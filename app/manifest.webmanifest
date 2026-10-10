@@ -1,0 +1,19 @@
+{
+  "name": "Sínek és vásznak – Zsófi és Matyi",
+  "short_name": "Sínek és vásznak",
+  "description": "Két pálya, egy út: a művészet és a vasút 1825–2026 között, Zsófia és Mátyás esküvőjére.",
+  "lang": "hu",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f0e4",
+  "theme_color": "#f5f0e4",
+  "categories": ["lifestyle", "education"],
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

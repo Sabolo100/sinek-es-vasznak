@@ -1,0 +1,11 @@
+{
+  "name": "sinek-es-vasznak",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Sínek és vásznak – Zsófi és Matyi, 1825–2026. Esküvői ajándék PWA.",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "dev": "node tools/build.mjs && node tools/serve.mjs 5173"
+  }
+}

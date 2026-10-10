@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sínek és vásznak – Zsófi és Matyi</title>
+  <meta name="description" content="Két pálya, egy út: a művészet és a vasút kétszáz éve párhuzamosan halad – 2026. október 10-én egy vágánnyá fut össze. Zsófia és Mátyás esküvőjére.">
+  <meta name="theme-color" content="#f5f0e4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1525" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="icons/icon-192.png" type="image/png" sizes="192x192">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Sínek és vásznak">
+
+  <!-- Open Graph előnézet -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sínek és vásznak – Zsófi és Matyi, 1825–2026">
+  <meta property="og:description" content="Két pálya, egy út. A művészet és a vasút kétszáz éve párhuzamosan halad – és most egy vágánnyá fut össze.">
+  <meta property="og:image" content="icons/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="hu_HU">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=IBM+Plex+Sans+Condensed:wght@400;500;600&family=IBM+Plex+Mono:wght@500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip" href="#track">Ugrás az idővonalra</a>
+
+  <main>
+    <!-- ============ IDŐVONAL ============ -->
+    <section id="view-timeline" class="view" aria-label="Idővonal">
+      <header class="hero" id="hero">
+        <div class="hero-botanic" id="heroBotanic" aria-hidden="true"></div>
+        <div class="hero-inner">
+          <p class="hero-kicker">Sínek és vásznak</p>
+          <h1 class="hero-names">
+            <span class="n1">Zsófia</span>
+            <span class="and">és</span>
+            <span class="n2">Mátyás</span>
+          </h1>
+          <p class="hero-sub">
+            <span class="lane-tag art">művészet</span>
+            <span class="hero-years">1825 – 2026</span>
+            <span class="lane-tag rail">vasút</span>
+          </p>
+          <p class="hero-lede">Két külön pálya, kétszáz év. Néha összekacsintanak egy festményen, egy pályaudvaron – és most végleg egy vágányra futnak.</p>
+        </div>
+        <svg class="hero-lines" id="heroLines" aria-hidden="true"></svg>
+        <p class="hero-cue" aria-hidden="true"><span>Görgess – indul a vonat</span></p>
+      </header>
+
+      <div class="controls" id="controls">
+        <div class="seg" role="radiogroup" aria-label="Szűrő">
+          <button role="radio" aria-checked="true" data-filter="all">Mind</button>
+          <button role="radio" aria-checked="false" data-filter="railInArt"><svg class="ico"><use href="#i-loco"/></svg>Vasút a műben</button>
+          <button role="radio" aria-checked="false" data-filter="hu"><span class="flag" aria-hidden="true"></span>Magyar szál</button>
+        </div>
+        <button class="yearbtn" id="yearBtn" aria-expanded="false" aria-controls="yearRow" aria-label="Ugrás évre">
+          <span id="yearNow">1825</span><svg class="ico"><use href="#i-chev"/></svg>
+        </button>
+        <div class="yearrow" id="yearRow" hidden>
+          <label for="yearSlider">Ugrás évre</label>
+          <input type="range" id="yearSlider" min="1825" max="2026" step="1" value="1825">
+          <output id="yearOut" for="yearSlider">1825</output>
+        </div>
+      </div>
+
+      <div class="track" id="track" tabindex="-1" aria-label="Kétsávos idővonal: balra a művészet, jobbra a vasút">
+        <div class="lane-heads" aria-hidden="true">
+          <span class="art">Vásznak</span><span class="rail">Sínek</span>
+        </div>
+        <svg class="rails" id="rails" aria-hidden="true"></svg>
+        <div class="cards" id="cards"></div>
+        <div class="loco" id="loco" aria-hidden="true"></div>
+      </div>
+
+      <section class="finale" id="finale" aria-label="Kezdőállomás: 2026"></section>
+
+      <footer class="foot">
+        <p>Szeretettel összerakva Zsófinak és Matyinak – a dátumokat, történeteket érdemes velük együtt tovább csiszolni.</p>
+        <p class="small">Képek: a festmények helyén stilizált színpaletták szerepelnek, a jogvédett művek miatt is. Térkép: © OpenStreetMap közreműködők.</p>
+      </footer>
+    </section>
+
+    <!-- ============ TÉRKÉP ============ -->
+    <section id="view-map" class="view" aria-label="Térkép" hidden>
+      <div class="map" id="map"></div>
+      <div class="map-top">
+        <div class="seg seg-map" role="radiogroup" aria-label="Szűrő">
+          <button role="radio" aria-checked="true" data-filter="all">Mind</button>
+          <button role="radio" aria-checked="false" data-filter="railInArt">Vasút a műben</button>
+          <button role="radio" aria-checked="false" data-filter="hu">Magyar szál</button>
+        </div>
+        <div class="map-chips">
+          <button class="chip on" data-layer="rail" aria-pressed="true"><i class="mk mk-rail"></i>Vasút</button>
+          <button class="chip on" data-layer="art" aria-pressed="true"><i class="mk mk-art"></i>Művészet</button>
+          <button class="chip" id="journeyBtn"><svg class="ico"><use href="#i-route"/></svg>Utazás</button>
+        </div>
+        <div class="map-jump" id="mapJump">
+          <button data-jump="eu">Európa</button>
+          <button data-jump="bp">Budapest</button>
+          <button data-jump="ny">↗ New York</button>
+          <button data-jump="us">↗ USA</button>
+          <button data-jump="jp">↗ Japán</button>
+          <button data-jump="world">Világ</button>
+        </div>
+      </div>
+      <div class="map-bottom" id="mapBottom">
+        <div class="journey" id="journey" hidden></div>
+        <div class="timebar">
+          <button class="play" id="playBtn" aria-label="Lejátszás"><svg class="ico"><use href="#i-play"/></svg></button>
+          <div class="timeslider">
+            <input type="range" id="mapSlider" min="1825" max="2026" step="1" value="2026" aria-label="Év">
+            <div class="ticks" aria-hidden="true"><span>1825</span><span>1875</span><span>1925</span><span>1975</span><span>2026</span></div>
+          </div>
+          <output class="mapyear" id="mapYear">2026</output>
+        </div>
+      </div>
+      <p class="map-fallback" id="mapFallback" hidden>A térképhez internetkapcsolat kell. Amint újra online vagy, itt lesz.</p>
+    </section>
+  </main>
+
+  <!-- ============ ALSÓ FÜLSOR ============ -->
+  <nav class="tabbar" aria-label="Nézetek">
+    <a href="#idovonal" data-view="timeline" aria-current="page"><svg class="ico"><use href="#i-tracks"/></svg><span>Idővonal</span></a>
+    <a href="#terkep" data-view="map"><svg class="ico"><use href="#i-map"/></svg><span>Térkép</span></a>
+    <button type="button" id="infoBtn"><svg class="ico"><use href="#i-heart"/></svg><span>Nekik</span></button>
+  </nav>
+
+  <!-- ============ BOTTOM SHEET ============ -->
+  <div class="scrim" id="scrim" hidden></div>
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+    <div class="sheet-grip" id="sheetGrip"><span></span></div>
+    <button class="sheet-close" id="sheetClose" aria-label="Bezárás"><svg class="ico"><use href="#i-x"/></svg></button>
+    <div class="sheet-body" id="sheetBody"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ============ IKONOK ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-loco" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16V9h8v7M11 11h6.5l2.5 5H3"/><path d="M5 9V5.5h2.5V9M14 11V7h3v4"/><circle cx="6.5" cy="18" r="1.8"/><circle cx="12.5" cy="18" r="1.8"/><circle cx="18" cy="18" r="1.4"/></g></symbol>
+      <symbol id="i-brush" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 11 13"/><path d="M11 13c-2-1-4.5 0-5 2.3-.4 1.8-1.4 2.8-3 3.2 3 1.6 7.4 1 8.4-2.2.3-1.2 0-2.3-.4-3.3Z"/></g></symbol>
+      <symbol id="i-tracks" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 2v20M16 2v20"/><path d="M6 5h12M6 10h12M6 15h12M6 20h12" opacity=".55"/></g></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20Z"/><path d="M9 4v13.5M15 6.5V20"/></g></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10Z"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M6 6l12 12M18 6 6 18"/></symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="m7 10 5 5 5-5"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13l10.5-6.5Z"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></symbol>
+      <symbol id="i-route" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><path d="M8 18h7a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h7"/></g></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/></g></symbol>
+      <symbol id="i-ext" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></g></symbol>
+      <symbol id="i-sound" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4Z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></g></symbol>
+      <symbol id="i-mute" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4Z"/><path d="m16 10 4 4M20 10l-4 4"/></g></symbol>
+    </defs>
+  </svg>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
